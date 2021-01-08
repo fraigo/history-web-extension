@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <style>
+        table{
+            border-spacing: 0;
+        }
+        table, th, td{
+            border: 1px solid #eee;
+            padding: 4px 8px;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+        }
+        table th {
+            font-weight: bold;
+            background-color: rgb(245, 181, 128);
+        }
+        table tr:nth-child(odd){
+            background-color: rgb(238, 225, 211);   
+        }
+        table tr:nth-child(even){
+            background-color: rgb(245, 209, 169);   
+        }
+    </style>
+</head>
+<body>
+    <h1>Browsing History Stats</h1>
+    <div>
+        <select id="range" >
+            <option value=0 >Today</option>
+            <option value=7 >Last Week</option>
+            <option value=30 >Last Month</option>
+        </select>
+    </div>
+    <div id="app">
+        <h3>{{title}}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Host</th>
+                    <th>Visits</th>
+                    <th>Last visit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="stat in stats" :key="stat.host">
+                    <td>{{stat.host}}</td>
+                    <td>{{stat.count}}</td>
+                    <td>{{dateFormat(stat.last)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="vue.js"></script>
+    <script src="history.js"></script>
+</body>
+</html>

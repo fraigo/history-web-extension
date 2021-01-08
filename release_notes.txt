@@ -1,0 +1,3 @@
+v1.00
+- Initial version
+- Displays total visits by host
