@@ -1,4 +1,3 @@
-var d=new Date();
 
 function historySort(stats){
     var list=Object.values(stats);
@@ -15,7 +14,8 @@ var app = new Vue({
     data: {
       title: "",
       items: [],
-      stats: []
+      stats: [],
+      minvisits: 1
     },
     methods:{
         dateFormat:function(time){
@@ -32,6 +32,14 @@ var app = new Vue({
         },
         replaceByDefault:function(e){
             e.target.src='./icons/favicon.png'
+        }
+    },
+    computed:{
+        filteredList:function(){
+            var self=this;
+            return this.stats.filter(function(item){
+                return item.count>=self.minvisits
+            })
         }
     }
   })
@@ -79,10 +87,11 @@ function loadHistory(title, startTime, endTime){
     
 }
 
-
+var d=new Date();
 var startTime=new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0).getTime();
 var endTime=d.getTime();
 var days=0;
+
 loadHistory("Today", startTime-1000*60*60*24*0,endTime);
 
 function selectRange(range,name){

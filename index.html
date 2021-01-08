@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
+    <title>History Stats</title>
     <style>
         table{
             border-spacing: 0;
@@ -50,10 +50,10 @@
             <option value=30 >Last Month</option>
         </select>
     </div>
-    <div class="form-control">
-        <label for="minvalue">Min. visits:</label> <input type="number" value="1" min="1" id="minvalue">
-    </div>
     <div id="app">
+        <div class="form-control">
+            <label for="minvalue">Min. visits:</label> <input v-model="minvisits" type="number" value="1" min="1" id="minvalue">
+        </div>
         <h3>{{title}}</h3>
         <table>
             <thead>
@@ -64,7 +64,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="stat in stats" :key="stat.host">
+                <tr v-for="stat in filteredList" :key="stat.host">
                     <td><img @error="replaceByDefault" :src="'https://www.google.com/s2/favicons?domain='+stat.host" width="16" height="16"> {{stat.host}}</td>
                     <td>{{stat.count}}</td>
                     <td>{{dateFormat(stat.last)}}</td>
