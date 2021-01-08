@@ -27,16 +27,31 @@
         table tr:nth-child(even){
             background-color: rgb(245, 209, 169);   
         }
+        .form-control{
+            margin: 8px 0;
+        }
+        .form-control label{
+            display: inline-block;
+            width: 120px;
+        }
+        select, input{
+            padding: 4px 8px;
+            width: 120px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
     <h1>Browsing History Stats</h1>
-    <div>
-        <select id="range" >
+    <div class="form-control">
+        <label for="range">Range:</label> <select id="range" >
             <option value=0 >Today</option>
             <option value=7 >Last Week</option>
             <option value=30 >Last Month</option>
         </select>
+    </div>
+    <div class="form-control">
+        <label for="minvalue">Min. visits:</label> <input type="number" value="1" min="1" id="minvalue">
     </div>
     <div id="app">
         <h3>{{title}}</h3>
@@ -50,7 +65,7 @@
             </thead>
             <tbody>
                 <tr v-for="stat in stats" :key="stat.host">
-                    <td>{{stat.host}}</td>
+                    <td><img @error="replaceByDefault" :src="'https://www.google.com/s2/favicons?domain='+stat.host" width="16" height="16"> {{stat.host}}</td>
                     <td>{{stat.count}}</td>
                     <td>{{dateFormat(stat.last)}}</td>
                 </tr>

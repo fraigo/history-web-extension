@@ -20,7 +20,18 @@ var app = new Vue({
     methods:{
         dateFormat:function(time){
             var date=new Date(time);
-            return date.toLocaleDateString();
+            var month=(date.getMonth()+1);
+            var day=""+(date.getDay());
+            if (month<10){
+                month="0"+month;
+            }
+            if (day<10){
+                day="0"+day;
+            }
+            return date.getFullYear()+"-"+month+"-"+day;
+        },
+        replaceByDefault:function(e){
+            e.target.src='./icons/favicon.png'
         }
     }
   })
@@ -32,7 +43,8 @@ function loadHistory(title, startTime, endTime){
         startTime: startTime,
         endTime: endTime
     }, function(rawData) {
-        //console.log("data",rawData);
+        console.log("History items",rawData.length);
+        console.log(rawData[0]);
         var items=[];
         var stats={};
         for(var idx in rawData){
