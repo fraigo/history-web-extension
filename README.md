@@ -5,5 +5,8 @@ Chrome Browser extension to see Navigation history stats.
 
 * `history` : Access to the Chrome browser history (`chrome.history` object). See https://developer.chrome.com/docs/extensions/reference/history/
 
+## Screenshot
+
+![image](./webstore/screenshot.png)
 
 
